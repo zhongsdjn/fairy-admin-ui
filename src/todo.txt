@@ -1,0 +1,9 @@
+login-account 
+login-panel
+    转为最新语法
+
+login-account import LocalCache from "@utils/cache"引入
+
+登录密码加密  缓存加密
+
+是否记录密码也保存缓存
