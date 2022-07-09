@@ -29,7 +29,7 @@ watch(pageInfo, () => getPageData());
 
 // 2.发送网络请求
 const getPageData = (queryInfo: any = {}) => {
-  console.log("page-content:", queryInfo)
+  console.log("page-content:", queryInfo);
   if (!isQuery) return;
   useSystemStore.getPageListAction({
     pageName: props.pageName,

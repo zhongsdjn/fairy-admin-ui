@@ -9,6 +9,7 @@ export const useMainStore = defineStore("main", {
     age: 18,
     entireDeparment: [],
     entireRole: [],
+    entireMenu: [],
   }),
 
   getters: {},
@@ -26,9 +27,13 @@ export const useMainStore = defineStore("main", {
         size: 1000,
       });
       const { list: roleList } = roleListResult.data;
+      // 角色分配菜单时请求的数据
+      const menuResult = await getPageListData('/menu/list', {})
+      const {list: menuList } = menuResult.data
 
       this.changeEntireDepartment(deparmentList);
       this.changeEntireRole(roleList);
+      this.changeEntireMenu(menuList);
     },
 
     changeEntireDepartment(list: any[]) {
@@ -36,6 +41,9 @@ export const useMainStore = defineStore("main", {
     },
     changeEntireRole(list: any[]) {
       this.entireRole = list;
+    },
+    changeEntireMenu(list: any[]) {
+      this.entireMenu = list;
     },
   },
 });

@@ -12,6 +12,11 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
+  // 额外的数据 如菜单列表
+  otherInfo: {
+    type: Object,
+    default: () => ({}),
+  },
   pageName: {
     type: String,
     require: true,
@@ -37,14 +42,14 @@ const handleConfirmClick = () => {
     // 编辑
     store.editPageDataAction({
       pageName: props.pageName,
-      editData: { ...formData.value },
+      editData: { ...formData.value, ...props.otherInfo },
       id: props.defaultInfo.id,
     });
   } else {
     // 新建
     store.createPageDataAction({
       pageName: props.pageName,
-      newData: { ...formData.value },
+      newData: { ...formData.value, ...props.otherInfo },
     });
   }
 };
@@ -64,6 +69,8 @@ defineExpose({
       destroy-on-close
     >
       <ZhForm v-bind="modelConfig" v-model="formData"></ZhForm>
+      <!-- 默认插槽 -->
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="centerDialogVisible = false">取消</el-button>

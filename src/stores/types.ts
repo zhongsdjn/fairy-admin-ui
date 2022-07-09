@@ -3,4 +3,5 @@ export interface IRootState {
   age: number;
   entireDeparment: any[];
   entireRole: any[];
+  entireMenu: any[];
 }
