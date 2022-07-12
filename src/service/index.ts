@@ -8,10 +8,10 @@ const zhRequest = new ZhRequest({
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
-      console.log("请求：ok");
+      // console.log("请求：ok");
       const token = localCache.getCache("token");
       if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers!.Authorization = `Bearer ${token}`;
       }
       return config;
     },
@@ -20,7 +20,7 @@ const zhRequest = new ZhRequest({
       return error;
     },
     responseInterceptor(config) {
-      console.log("响应：ok");
+      // console.log("响应：ok");
       return config;
     },
     responseInterceptorCatch(error) {

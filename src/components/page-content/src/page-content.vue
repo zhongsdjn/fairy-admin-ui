@@ -6,6 +6,7 @@ import { usePermission } from "@/hooks/use-permission";
 
 const props = defineProps({
   contentTableConfig: {
+    // type: Array,
     type: Object,
     require: true,
   },
@@ -29,7 +30,7 @@ watch(pageInfo, () => getPageData());
 
 // 2.发送网络请求
 const getPageData = (queryInfo: any = {}) => {
-  console.log("page-content:", queryInfo);
+  // console.log("page-content:", queryInfo);
   if (!isQuery) return;
   useSystemStore.getPageListAction({
     pageName: props.pageName,
@@ -76,7 +77,19 @@ const handleEditClick = (item: any) => {
 // 新建
 const handleNewClick = () => {
   emit("newBtnClick");
+  console.log(props.contentTableConfig?.propList)
 };
+
+// 隐藏
+// const handleColHiddenClick = () => {
+//   // emit("colHiddenBtnClick");
+//   for (const item of props.contentTableConfig?.propList) {
+//     if ( item.isColShow === false) {
+//       console.log(item)
+//       item.isColShow = true
+//     }
+//   }
+// };
 
 // 必须定义defineExpose 在usePageSearch中pageContentRef.value?.getPageData(queryInfo)才能识别到
 defineExpose({
@@ -102,6 +115,15 @@ defineExpose({
           >新建</el-button
         >
       </template>
+      <!-- 隐藏列 -->
+      <!-- <template #colHidden>
+        <el-button
+          type="primary"
+          size="default"
+          @click="handleColHiddenClick"
+          >隐藏列</el-button
+        >
+      </template> -->
 
       <!-- 2.列中的插槽 -->
       <template #status="scope">

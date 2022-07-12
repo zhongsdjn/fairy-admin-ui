@@ -4,7 +4,7 @@ import PageModel from "@/components/page-model";
 type CallBackFn = (item?: any) => void;
 export function usePageModel(
   newCallback?: CallBackFn,
-  editCallback?: CallBackFn
+  editCallback?: CallBackFn,
 ): any {
   const pageModelRef = ref<InstanceType<typeof PageModel>>();
   const defaultInfo = ref({});
@@ -13,6 +13,7 @@ export function usePageModel(
     if (pageModelRef.value) {
       pageModelRef.value.centerDialogVisible = true;
     }
+
     newCallback && newCallback();
   };
   const handleEditData = (item: any) => {

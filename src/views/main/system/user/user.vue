@@ -7,8 +7,8 @@ import { contentTableConfig } from "./config/content.config";
 import usePageSearch from "@/hooks/use-page-search";
 import { modelConfig } from "./config/model.config";
 import { usePageModel } from "@/hooks/use-page-model";
-import {useMainStore} from "@/stores/index";
-import PageModel from '@/components/page-model'
+import { useMainStore } from "@/stores/index";
+import PageModel from "@/components/page-model";
 
 const [pageContentRef, handleResetClick, handleQueryClick] = usePageSearch();
 // hook
@@ -24,6 +24,17 @@ const editCallback = () => {
   );
   passwordItem!.isHidden = true;
 };
+
+// 隐藏列
+// const handleColHiddenCallback = () => {
+//   const ok = contentTableConfig.propList.find(
+//     (item) => item.isColShow === false
+//   );
+//   if (ok?.isColShow) {
+//     ok.isColShow = true;
+//   }
+//   console.log(contentTableConfig);
+// };
 
 // 2.动态添加部门和角色列表
 const store = useMainStore();

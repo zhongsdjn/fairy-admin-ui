@@ -4,34 +4,31 @@ import { ref } from "vue";
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { LoginModule } from "../../../stores/login/login";
-import {pathMapToMenu} from '../../../utils/map-menus'
-
+import { pathMapToMenu } from "../../../utils/map-menus";
 
 const props = defineProps<{
-  collapse: boolean
+  collapse: boolean;
 }>();
 const userStore = LoginModule();
 const userMenus = computed((): any[] => userStore.userMenus);
 
 // 处理点击菜单时对应的路由跳转(type为2的对象)
-const router = useRouter()
+const router = useRouter();
 
 // 菜单选中项
 // get当前路径
-const route = useRoute()
-const currentPath = route.path
+const route = useRoute();
+const currentPath = route.path;
 // 根据当前路径匹配userMenus得到menu
-const menu = pathMapToMenu(userMenus.value, currentPath)
+const menu = pathMapToMenu(userMenus.value, currentPath);
 // menu.id即为当前选中项
-const defaultValue = ref(menu.id + '')
-
-
+const defaultValue = ref(menu.id + "");
 
 const handleMenuItemClick = (item: any) => {
   router.push({
-    path: item.url ?? '/not-found'
-  })
-}
+    path: item.url ?? "/not-found",
+  });
+};
 </script>
 
 <template>
@@ -46,8 +43,15 @@ const handleMenuItemClick = (item: any) => {
 
     <!-- 菜单 -->
     <!-- el-menu为菜单整体  -->
-    <el-menu :default-active="defaultValue" class="el-menu-vertical" :collapse="collapse" background-color="#0c2135"
-      text-color="#b7bdc3" :unique-opened="false" active-text-color="#0a60bd">
+    <el-menu
+      :default-active="defaultValue"
+      class="el-menu-vertical"
+      :collapse="collapse"
+      background-color="#0c2135"
+      text-color="#b7bdc3"
+      :unique-opened="false"
+      active-text-color="#0a60bd"
+    >
       <!-- 遍历菜单数组来展示详情 -->
       <template v-for="item in userMenus" :key="item.id">
         <!-- 判断item类型 二级菜单-->
@@ -65,7 +69,10 @@ const handleMenuItemClick = (item: any) => {
               <span>{{ item.name }}</span>
             </template>
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item :index="subitem.id + ''" @click="handleMenuItemClick(subitem)">
+              <el-menu-item
+                :index="subitem.id + ''"
+                @click="handleMenuItemClick(subitem)"
+              >
                 <!-- 如果icon有值时显示  无值不显示 -->
                 <template v-if="subitem.icon">
                   <el-icon>

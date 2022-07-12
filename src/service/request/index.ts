@@ -34,7 +34,7 @@ class ZhRequest {
     //   全局拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log("全局请求拦截器：成功");
+        // console.log("全局请求拦截器：成功");
         if (this.showLoading) {
           // 定义loading
           this.loading = ElLoading.service({
@@ -53,7 +53,7 @@ class ZhRequest {
 
     this.instance.interceptors.response.use(
       (res) => {
-        console.log("全局响应拦截器：成功");
+        // console.log("全局响应拦截器：成功");
 
         // 移除loading
         this.loading?.close();

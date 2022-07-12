@@ -13,8 +13,7 @@ const props = defineProps({
     default: 0,
   },
   propList: {
-    // type: Array,
-    type: Object,
+    type: [Object],
     required: true,
   },
   showIndexColumn: {
